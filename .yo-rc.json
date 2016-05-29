@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "mvalueUi",
+    "style": "stylus",
+    "postcss": false
+  }
+}
