@@ -44,6 +44,15 @@ const incomeStatementsReducer = function (state = [], action) {
   }
 };
 
+const mtgPmtTableReducer = function (state = [], action) {
+  switch (action.type) {
+    case 'ANALYSIS_COMPLETE':
+          return action.mtgPmtTable;
+    default:
+      return state;
+  }
+};
+
 const irrReducer = function (state = 0.0, action) {
   switch (action.type) {
     case 'ANALYSIS_COMPLETE':
@@ -57,6 +66,7 @@ const reducers = {
   isLoading: isLoadingReducer,
   incomeStatements: incomeStatementsReducer,
   cashflowStatements: cashflowStatementsReducer,
+  mtgPmtTable: mtgPmtTableReducer,
   irr: irrReducer
 };
 

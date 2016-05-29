@@ -1,9 +1,9 @@
 'use strict';
 
-import React from 'react';
-import ReactDataGrid from 'react-data-grid/addons';
-import * as _ from 'lodash';
-import {formatMoney} from '../util/Util';
+import React from "react";
+import ReactDataGrid from "react-data-grid/addons";
+import * as _ from "lodash";
+import {formatMoney} from "../util/Util";
 require('react-data-grid/themes/react-data-grid.css');
 
 class LabelFormatter extends React.Component {

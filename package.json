@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "core-js": "^2.0.0",
+    "highcharts": "^4.2.5",
     "jquery": "^2.2.4",
     "lodash": "^4.13.1",
     "material-ui": "^0.15.0",
@@ -73,6 +74,7 @@
     "react-bootstrap": "^0.29.4",
     "react-data-grid": "^0.14.42",
     "react-dom": "^15.0.0",
+    "react-highcharts": "^8.3.2",
     "react-redux": "^4.4.5",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2"

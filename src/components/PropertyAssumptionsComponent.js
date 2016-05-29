@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
-import {FormComponent, MoneyField, PercentageField} from './FormComponent';
+import React from "react";
+import {Row, Col} from "react-bootstrap";
+import {FormComponent, MoneyField, PercentageField} from "./FormComponent";
 
 class PropertyAssumptionsComponent extends FormComponent {
 
@@ -21,45 +21,45 @@ class PropertyAssumptionsComponent extends FormComponent {
 
     return (
       <div className='incomeassumptions-component'>
-        <h4>Property Assumption</h4>
-        <Grid>
-          <Row>
-            <Col md={4}>
-              <h5>Revenue</h5>
-              <MoneyField floatingLabelText='Rent'
-                          isRequired={true}
-                          initialValue={rent}
-                          onChange={v => this.updateState('rent', v)}/>
-              <PercentageField floatingLabelText='Total Appreciation'
-                          initialValue={cumulativeAppreciation}
-                          onChange={v => this.updateState('cumulativeAppreciation', v)}/><br/>
-              <MoneyField floatingLabelText='Investment Horizon (Yrs)'
-                          initialValue={investmentHorizonInYrs}
-                          onChange={v => this.updateState('investmentHorizonInYrs', v)}/>
-            </Col>
-            <Col md={4}>
-              <h5>Monthly Cost</h5>
-              <MoneyField floatingLabelText='Common Charges'
-                          initialValue={commonCharges}
-                          onChange={v => this.updateState('commonCharges', v)}/><br/>
-              <MoneyField floatingLabelText='Property Taxes'
-                          initialValue={propertyTax}
-                          onChange={v => this.updateState('propertyTax', v)}/><br/>
-              <MoneyField floatingLabelText='Insurance'
-                          initialValue={insurance}
-                          onChange={v => this.updateState('insurance', v)}/>
-            </Col>
-            <Col md={4}>
-              <h5>Closing Cost(s)</h5>
-              <MoneyField floatingLabelText='Buying Closing Cost'
-                          initialValue={buyingClosingCost}
-                          onChange={v => this.updateState('buyingClosingCost', v)}/>
-              <MoneyField floatingLabelText='Selling Closing Cost'
-                          initialValue={sellingClosingCost}
-                          onChange={v => this.updateState('sellingClosingCost', v)}/><br/>
-            </Col>
-          </Row>
-        </Grid>
+        <Row>
+          <h4>Property Assumption</h4>
+        </Row>
+        <Row>
+          <Col md={4}>
+            <h5>Revenue</h5>
+            <MoneyField floatingLabelText='Rent'
+                        isRequired={true}
+                        initialValue={rent}
+                        onChange={v => this.updateState('rent', v)}/>
+            <PercentageField floatingLabelText='Total Appreciation'
+                             initialValue={cumulativeAppreciation}
+                             onChange={v => this.updateState('cumulativeAppreciation', v)}/>
+            <MoneyField floatingLabelText='Investment Horizon (Yrs)'
+                        initialValue={investmentHorizonInYrs}
+                        onChange={v => this.updateState('investmentHorizonInYrs', v)}/>
+          </Col>
+          <Col md={4}>
+            <h5>Monthly Cost</h5>
+            <MoneyField floatingLabelText='Common Charges'
+                        initialValue={commonCharges}
+                        onChange={v => this.updateState('commonCharges', v)}/>
+            <MoneyField floatingLabelText='Property Taxes'
+                        initialValue={propertyTax}
+                        onChange={v => this.updateState('propertyTax', v)}/>
+            <MoneyField floatingLabelText='Insurance'
+                        initialValue={insurance}
+                        onChange={v => this.updateState('insurance', v)}/>
+          </Col>
+          <Col md={4}>
+            <h5>Closing Cost(s)</h5>
+            <MoneyField floatingLabelText='Buying Closing Cost'
+                        initialValue={buyingClosingCost}
+                        onChange={v => this.updateState('buyingClosingCost', v)}/>
+            <MoneyField floatingLabelText='Selling Closing Cost'
+                        initialValue={sellingClosingCost}
+                        onChange={v => this.updateState('sellingClosingCost', v)}/>
+          </Col>
+        </Row>
         <br/>
       </div>
     );
