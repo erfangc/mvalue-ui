@@ -1,31 +1,38 @@
 'use strict';
 
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import FormComponent from './FormComponent';
+import {FormComponent, MoneyField, PercentageField} from './FormComponent';
 
 class MtgAssumptionsComponent extends FormComponent {
+
   render() {
+    const {
+      nper,
+      rate,
+      homePrice,
+      ltv
+    } = this.props;
+
     return (
       <div className='mtgassumptions-component'>
-          <h4>Mortgage Assumption</h4>
-            <TextField
-              floatingLabelText="No. of Payments"
-              value={this.getWithFallback('nper')}
-              onChange={e=>this.updateState('nper', e.target.value)}/>
-            <TextField
-              floatingLabelText="Interest Rate"
-              value={this.getWithFallback('rate')}
-              onChange={e=>this.updateState('rate', e.target.value)}/>
-            <TextField
-              floatingLabelText="Home Price"
-              value={this.getWithFallback('homePrice')}
-              onChange={e=>this.updateState('homePrice', e.target.value)}/>
-            <TextField
-              floatingLabelText="Loan-to-Value"
-              value={this.getWithFallback('ltv')}
-              onChange={e=>this.updateState('ltv', e.target.value)}/>
-          <br/>
+        <h4>Mortgage Assumption</h4>
+        <MoneyField
+          floatingLabelText='No. of Payments'
+          initialValue={nper}
+          onChange={v=>this.updateState('nper', v)}/>
+        <PercentageField
+          floatingLabelText='Interest Rate'
+          initialValue={rate}
+          onChange={v=>this.updateState('rate', v)}/>
+        <MoneyField
+          floatingLabelText='Home Price'
+          initialValue={homePrice}
+          onChange={v=>this.updateState('homePrice', v)}/>
+        <PercentageField
+          floatingLabelText='Loan-to-Value'
+          initialValue={ltv}
+          onChange={v=>this.updateState('ltv', v)}/>
+        <br/>
       </div>
     );
   }

@@ -4,41 +4,33 @@
  *          This modifications only run once when the generator is invoked - if
  *          you edit them, they are not updated again.
  */
-import React, {
-  Component,
-  PropTypes
-} from 'react';
-import {bindActionCreators} from 'redux';
+import React from 'react';
 import {connect} from 'react-redux';
-import Main from '../components/MainComponent';
+import MainComponent from '../components/MainComponent';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+require('../bootstrap/css/bootstrap.css');
+
+// Needed for onTouchTap
+// Check this repo https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 /* Populated by react-webpack-redux:reducer */
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Main actions={this.props.actions}/>
+        <MainComponent irr={this.props.irr}/>
       </MuiThemeProvider>
     );
   }
 }
-/* Populated by react-webpack-redux:reducer
- *
- * HINT: if you adjust the initial type of your reducer, you will also have to
- *       adjust it here.
- */
-App.propTypes = {
-  actions: PropTypes.object.isRequired
-};
-function mapStateToProps() {
-  /* Populated by react-webpack-redux:reducer */
-  return {};
+
+function mapStateToProps(state) {
+  return {
+    irr: state.irr
+  };
 }
-function mapDispatchToProps(dispatch) {
-  /* Populated by react-webpack-redux:action */
-  const actions = {};
-  return {actions: bindActionCreators(actions, dispatch)};
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps)(App);

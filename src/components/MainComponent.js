@@ -1,11 +1,11 @@
 require('normalize.css/normalize.css');
 
-import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import IncomeStatementTable from '../containers/IncomeStatementTable';
-import Assumptions from '../containers/Assumptions';
-import {Grid, Row, Col} from 'react-bootstrap';
-import Divider from 'material-ui/Divider';
+import React from "react";
+import AppBar from "material-ui/AppBar";
+import {IncomeStatementTable, CashflowStatementTable} from "../containers/FinancialTable";
+import Assumptions from "../containers/Assumptions";
+import {Grid, Row, Col} from "react-bootstrap";
+import {Tabs, Tab} from "material-ui/Tabs";
 
 class MainComponent extends React.Component {
   render() {
@@ -15,16 +15,27 @@ class MainComponent extends React.Component {
           title='mValue'
           iconClassNameRight='muidocs-icon-navigation-expand-more'
         />
-        <Divider inset={true}/>
         <Grid>
           <Row>
-            <Col md={12}>
+            <Col>
               <Assumptions/>
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
-              <IncomeStatementTable/>
+            <Col>
+              <strong>IRR</strong> {`${(this.props.irr * 100).toFixed(2)}%`}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Tabs>
+                <Tab label="Income Statements">
+                  <IncomeStatementTable />
+                </Tab>
+                <Tab label="Cashflow Statements">
+                  <CashflowStatementTable />
+                </Tab>
+              </Tabs>
             </Col>
           </Row>
         </Grid>
@@ -32,7 +43,5 @@ class MainComponent extends React.Component {
     );
   }
 }
-
-MainComponent.defaultProps = {};
 
 export default MainComponent;

@@ -6,7 +6,7 @@
  *          This modifications only run once when the generator is invoked - if
  *          you edit them, they are not updated again.
  */
-import {combineReducers} from 'redux';
+import {combineReducers} from "redux";
 
 /**
  * reducer that triggers an API call to the REST service end point
@@ -26,18 +26,38 @@ const isLoadingReducer = function (state = false, action) {
     }
 };
 
-const dataReducer = function (state = [], action) {
+const cashflowStatementsReducer = function (state = [], action) {
   switch (action.type) {
     case 'ANALYSIS_COMPLETE':
-          return action.data;
+          return action.cashflowStatements;
     default:
-      return [];
+      return state;
+  }
+};
+
+const incomeStatementsReducer = function (state = [], action) {
+  switch (action.type) {
+    case 'ANALYSIS_COMPLETE':
+          return action.incomeStatements;
+    default:
+      return state;
+  }
+};
+
+const irrReducer = function (state = 0.0, action) {
+  switch (action.type) {
+    case 'ANALYSIS_COMPLETE':
+          return action.irr;
+    default:
+          return state;
   }
 };
 
 const reducers = {
   isLoading: isLoadingReducer,
-  data: dataReducer
+  incomeStatements: incomeStatementsReducer,
+  cashflowStatements: cashflowStatementsReducer,
+  irr: irrReducer
 };
 
 module.exports = combineReducers(reducers);

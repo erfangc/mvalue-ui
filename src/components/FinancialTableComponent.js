@@ -18,34 +18,34 @@ class MoneyFormatter extends React.Component {
   }
 }
 
-class IncomeStatementTableComponent extends React.Component {
+/**
+ * Component that wraps ReactDataGrid to display financial statement data such as Income statement or Cashflow statement
+ * Columns of this table shall represent data from a specific period whereas rows represent a specific financial statement attribute
+ * such as 'rent' or 'total expense'
+ *
+ * These financial statement attributes are defined by the prop `rowLabels`
+ *
+ */
+class FinancialTableComponent extends React.Component {
 
   render() {
+    const styles = {
+      loading: {
+        'textAlign': 'center'
+      }
+    };
     const {isLoading, data} = this.props;
     if (isLoading)
-      return <div>Loading ... </div>;
+      return <div style={styles.loading}>Loading ... </div>;
     else if (!data || data.length === 0)
-      return <div>Click Submit!</div>;
+      return <div style={styles.loading}>Click Submit to Perform an Analysis</div>;
     else
       return this.renderTable();
   }
 
   renderTable() {
 
-    const {data} = this.props;
-    const rowLabels = [
-      {label: 'rent', name: 'Rent'},
-      {label: 'totalRevenue', name: 'Total Revenue'},
-      {isBlank: true},
-      {label: 'commonCharges', name: 'Common Charges'},
-      {label: 'interestExpense', name: 'Interest Expense'},
-      {label: 'tax', name: 'Tax'},
-      {label: 'closingCost', name: 'Closing Cost'},
-      {label: 'proceedsFromSale', name: 'Proceeds from Sale'},
-      {label: 'totalExponses', name: 'Total Expenses'},
-      {isBlank: true},
-      {label: 'netIncome', name: 'Net Income'}
-    ];
+    const {data, rowLabels} = this.props;
 
     const columns = data.map(datum=> {
       return {
@@ -69,15 +69,14 @@ class IncomeStatementTableComponent extends React.Component {
     function rowGetter(i) {
       const {label, name} = rowLabels[i];
       // generate a row based on every element in `data` which represents the columns
-      const rowData = data.map(datum=> {
-        return [datum['period'], datum[label]];
-      });
+      const rowData = data.map(datum =>
+        [datum['period'], datum[label]]
+      );
       return _.assign({}, _.fromPairs(rowData), {key: i, label: name});
     }
 
     return (
       <div>
-        <h4>Income Statement</h4>
         <ReactDataGrid
           columns={columns}
           rowGetter={rowGetter}
@@ -90,10 +89,6 @@ class IncomeStatementTableComponent extends React.Component {
 
 }
 
-IncomeStatementTableComponent.displayName = 'IncomeStatementTableComponent';
+FinancialTableComponent.displayName = 'FinancialTableComponent';
 
-// Uncomment properties you need
-// MtgPaymentTableComponent.propTypes = {};
-// MtgPaymentTableComponent.defaultProps = {};
-
-export default IncomeStatementTableComponent;
+export default FinancialTableComponent;

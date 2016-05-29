@@ -3,21 +3,21 @@ import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
 import MtgAssumptionsComponent from '../components/MtgAssumptionsComponent';
-import IncomeAssumptionsComponent from '../components/IncomeAssumptionsComponent';
-
-let config = require('config').default;
+import PropertyAssumptionsComponent from '../components/PropertyAssumptionsComponent';
 import * as $ from 'jquery';
+import * as _ from 'lodash';
+
+const config = require('config').default;
 
 class Assumptions extends React.Component {
 
   submit() {
-    let {submitAnalysis} = this.props;
-      const assumptions = {
-        mtgAssumptions: this.mtgAssumption.getStateWithFallback(),
-        incomeStatementAssumptions: this.incomeAssumption.getStateWithFallback()
-      };
-    debugger;
-      submitAnalysis(assumptions);
+    const {submitAnalysis} = this.props;
+    const assumptions = {
+      mtgAssumptions: this.mtgAssumption.getFormValuesAsObject(),
+      propertyAssumptions: this.propertyAssumptions.getFormValuesAsObject()
+    };
+    submitAnalysis(assumptions);
   }
 
   render() {
@@ -29,7 +29,7 @@ class Assumptions extends React.Component {
               <MtgAssumptionsComponent ref={node=>this.mtgAssumption= node}/>
             </Col>
             <Col md={8}>
-              <IncomeAssumptionsComponent ref={node=>this.incomeAssumption = node}/>
+              <PropertyAssumptionsComponent ref={node=>this.propertyAssumptions = node}/>
             </Col>
           </Row>
         </Grid>
@@ -58,10 +58,9 @@ function submitAnalysis(dispatch, assumptions) {
     type: 'POST',
     data: JSON.stringify(assumptions),
     success: function (response) {
-      dispatch({
-        type: 'ANALYSIS_COMPLETE',
-        data: response
-      })
+      dispatch(_.assign({}, {
+        type: 'ANALYSIS_COMPLETE'
+      }, response));
     },
     contentType: 'application/json'
   });
