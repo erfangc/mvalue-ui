@@ -1,6 +1,7 @@
-import React from 'react';
-import * as _ from 'lodash';
-import {TextField} from 'material-ui';
+import React from "react";
+import * as _ from "lodash";
+import {TextField} from "material-ui";
+import {isFormattedAsMoney} from "../util/Util";
 
 class ValidatedFormField extends React.Component {
 
@@ -79,19 +80,18 @@ export class MoneyField extends ValidatedFormField {
         errorText: 'This field is required'
       });
     // credit: http://stackoverflow.com/questions/11799539/regex-for-money-values-in-javascript
-    else if (value.search(/^\$?\d+(,\d{3})*(\.\d*)?$/) >= 0) {
+    else if (!isNaN(value) || isFormattedAsMoney(value))
       this.setState({
         value: value,
         errorText: ''
       }, () => onChange(Number(value.replace(/[\$,]/g, ''))));
-    }
-    else {
+    else
       this.setState({
         value: value,
         errorText: 'Please enter a valid monetary amount'
       });
-    }
   }
+
 }
 
 /**

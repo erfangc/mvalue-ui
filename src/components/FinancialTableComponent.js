@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDataGrid from "react-data-grid/addons";
 import * as _ from "lodash";
-import {formatMoney} from "../util/Util";
+import {formatAsMoney} from "../util/Util";
 require('react-data-grid/themes/react-data-grid.css');
 
 class LabelFormatter extends React.Component {
@@ -15,7 +15,7 @@ class LabelFormatter extends React.Component {
 class MoneyFormatter extends React.Component {
   render() {
     const value = this.props.value;
-    return <span>{value !== 0 && !isNaN(value) ? formatMoney(value) : ''}</span>;
+    return <span>{value !== 0 && !isNaN(value) ? formatAsMoney(value, 0) : ''}</span>;
   }
 }
 
@@ -23,9 +23,7 @@ class MoneyFormatter extends React.Component {
  * Component that wraps ReactDataGrid to display financial statement data such as Income statement or Cashflow statement
  * Columns of this table shall represent data from a specific period whereas rows represent a specific financial statement attribute
  * such as 'rent' or 'total expense'
- *
  * These financial statement attributes are defined by the prop `rowLabels`
- *
  */
 class FinancialTableComponent extends React.Component {
 

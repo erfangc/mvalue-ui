@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import ReactHighcharts from "react-highcharts";
 import * as _ from "lodash";
-import {formatMoney} from "../util/Util";
+import {formatAsMoney} from "../util/Util";
 ReactHighcharts.Highcharts.theme = {
   colors: ['#2196F3', '#1A237E', '#311B92']
 };
@@ -18,7 +18,7 @@ const commonChartConfig = {
   tooltip: {
     borderWidth: 0,
     formatter: function () {
-      return `<strong>Period ${this.x}</strong><br/>${this.series.name} \$${formatMoney(this.y)}`;
+      return `<strong>Period ${this.x}</strong><br/>${this.series.name} ${formatAsMoney(this.y, 0)}`;
     }
   }
 };
