@@ -14,7 +14,8 @@ class LabelFormatter extends React.Component {
 
 class MoneyFormatter extends React.Component {
   render() {
-    return <span>{formatMoney(this.props.value)}</span>;
+    const value = this.props.value;
+    return <span>{value !== 0 && !isNaN(value) ? formatMoney(value) : ''}</span>;
   }
 }
 
@@ -67,10 +68,9 @@ class FinancialTableComponent extends React.Component {
     });
 
     function rowGetter(i) {
-      const {label, name} = rowLabels[i];
+      const {label, name, isBlank} = rowLabels[i];
       // generate a row based on every element in `data` which represents the columns
-      const rowData = data.map(datum =>
-        [datum['period'], datum[label]]
+      const rowData = data.map(datum => [datum['period'], isBlank ? 0 : datum[label]]
       );
       return _.assign({}, _.fromPairs(rowData), {key: i, label: name});
     }

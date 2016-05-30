@@ -7,13 +7,13 @@ function mapStateToPropsIncomeStatement(state) {
     data: state.incomeStatements,
     rowLabels:  [
       {label: 'rent', name: 'Rent'},
+      {label: 'proceedsFromSale', name: 'Proceeds from Sale'},
       {label: 'totalRevenue', name: 'Total Revenue'},
       {isBlank: true},
       {label: 'commonCharges', name: 'Common Charges'},
       {label: 'interestExpense', name: 'Interest Expense'},
       {label: 'tax', name: 'Tax'},
       {label: 'closingCost', name: 'Closing Cost'},
-      {label: 'proceedsFromSale', name: 'Proceeds from Sale'},
       {label: 'totalExponses', name: 'Total Expenses'},
       {isBlank: true},
       {label: 'netIncome', name: 'Net Income'}
