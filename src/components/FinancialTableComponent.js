@@ -49,7 +49,7 @@ class FinancialTableComponent extends React.Component {
     const columns = data.map(datum=> {
       return {
         formatter: MoneyFormatter,
-        key: datum['period'],
+        key: `${datum['period']}`,
         width: 100,
         name: `Year ${datum['period']}`,
         resizable: true
@@ -70,7 +70,7 @@ class FinancialTableComponent extends React.Component {
       // generate a row based on every element in `data` which represents the columns
       const rowData = data.map(datum => [datum['period'], isBlank ? 0 : datum[label]]
       );
-      return _.assign({}, _.fromPairs(rowData), {key: i, label: name});
+      return _.assign({}, _.fromPairs(rowData), {key: `${i}`, label: name});
     }
 
     return (

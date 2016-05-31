@@ -22,7 +22,9 @@ class PropertyAssumptionsComponent extends FormComponent {
     return (
       <div className='incomeassumptions-component'>
         <Row>
-          <h4>Property Assumption</h4>
+          <Col md={12}>
+            <h4>Property Assumption</h4>
+          </Col>
         </Row>
         <Row>
           <Col md={4}>

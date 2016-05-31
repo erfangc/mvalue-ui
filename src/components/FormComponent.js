@@ -1,7 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
 import {TextField} from "material-ui";
-import {isFormattedAsMoney} from "../util/Util";
+import {formatAsPercent, formatAsMoney,isFormattedAsMoney} from "../util/Util";
 
 class ValidatedFormField extends React.Component {
 
@@ -29,6 +29,15 @@ class ValidatedFormField extends React.Component {
 }
 
 export class PercentageField extends ValidatedFormField {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: formatAsPercent(this.props.initialValue),
+      errorText: ''
+    };
+  }
+
   /**
    * validates value held in `e`, if valid invoke the onChange on props passing the validated value
    * @param e
@@ -66,7 +75,38 @@ export class PercentageField extends ValidatedFormField {
   }
 }
 
+export class NumberField extends ValidatedFormField {
+  onChange(e) {
+    const value = e.target.value;
+    const {onChange, isRequired} = this.props;
+    if (!value && isRequired)
+      this.setState({
+        value: value,
+        errorText: 'This field is required'
+      });
+    else if (!isNaN(value))
+      this.setState({
+        value: value,
+        errorText: ''
+      }, () => onChange(value));
+    else
+      this.setState({
+        value: value,
+        errorText: 'Please enter a valid number'
+      });
+  }
+}
+
 export class MoneyField extends ValidatedFormField {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: formatAsMoney(props.initialValue),
+      errorText: ''
+    }
+  }
+
   /**
    * validates value held in `e`, if valid invoke the onChange on props passing the validated value
    * @param e

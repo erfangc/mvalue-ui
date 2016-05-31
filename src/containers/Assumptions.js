@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Row, Col} from "react-bootstrap";
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from "material-ui/RaisedButton";
 import MtgAssumptionsComponent from "../components/MtgAssumptionsComponent";
 import PropertyAssumptionsComponent from "../components/PropertyAssumptionsComponent";
 import submitAnalysis from "../actions/SubmitAnalysis";
@@ -31,7 +31,9 @@ class Assumptions extends React.Component {
           </Col>
         </Row>
         <Row>
-          <RaisedButton label='Submit' primary={true} onClick={()=>this.submit()}/>
+          <Col md={12}>
+            <RaisedButton label='Submit' primary={true} onClick={()=>this.submit()}/>
+          </Col>
         </Row>
       </div>
     );

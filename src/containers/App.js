@@ -10,7 +10,6 @@ import MainComponent from '../components/MainComponent';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-require('../bootstrap/css/bootstrap.css');
 
 // Needed for onTouchTap
 // Check this repo https://github.com/zilverline/react-tap-event-plugin

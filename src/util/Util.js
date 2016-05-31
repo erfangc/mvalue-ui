@@ -23,3 +23,13 @@ export function formatAsMoney(value, roundTo = 2, usePrefix = false) {
 export function isFormattedAsMoney(value) {
   return value.search(/^\$?(\d{1,3})?(,\d{3})+(\.\d*)?$/) >= 0;
 }
+
+
+/**
+ * return the value with % appended and multiply by 100
+ * @param value
+ * @returns {string}
+ */
+export function formatAsPercent(value) {
+  return `${value * 100}%`;
+}

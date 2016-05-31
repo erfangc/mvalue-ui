@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {FormComponent, MoneyField, PercentageField} from './FormComponent';
+import {FormComponent, NumberField, MoneyField, PercentageField} from './FormComponent';
 
 class MtgAssumptionsComponent extends FormComponent {
 
@@ -16,7 +16,7 @@ class MtgAssumptionsComponent extends FormComponent {
     return (
       <div className='mtgassumptions-component'>
         <h4>Mortgage Assumption</h4>
-        <MoneyField
+        <NumberField
           floatingLabelText='No. of Payments'
           initialValue={nper}
           onChange={v=>this.updateState('nper', v)}/>
