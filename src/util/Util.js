@@ -28,8 +28,9 @@ export function isFormattedAsMoney(value) {
 /**
  * return the value with % appended and multiply by 100
  * @param value
+ * @param precision number of decimal places
  * @returns {string}
  */
-export function formatAsPercent(value) {
-  return `${value * 100}%`;
+export function formatAsPercent(value, precision = 2) {
+  return `${(value * 100).toFixed(precision)}%`;
 }

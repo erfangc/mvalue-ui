@@ -37,7 +37,7 @@ class MainComponent extends React.Component {
           </Row>
           <Row>
             <Col md={12}>
-              <strong>IRR</strong> {`${(this.props.irr * 100).toFixed(2)}%`}
+              <strong>Pretax IRR</strong> {`${(this.props.irr * 100).toFixed(2)}%`}
               <MediaQuery minDeviceWidth={1224}>
                 <Tabs>
                   <Tab label="Income Statements">
